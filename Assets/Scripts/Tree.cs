@@ -6,21 +6,21 @@ public class Tree<T>
 {
     public TreeNode<T> Root { get; private set; }
 
-    public Tree(T rootValue)
+    public Tree(TreeNode<T> rootValue)
     {
-        Root = new TreeNode<T>(rootValue);
+        Root = rootValue;
     }
 
 
     // Búsqueda Recursiva
-    public TreeNode<T> Find(TreeNode<T> node, T value)
+    public TreeNode<T> Find(TreeNode<T> node, Predicate<T> match)
     {
-        if (EqualityComparer<T>.Default.Equals(node.Value, value))
+        if(match(node.Value))
             return node;
 
         foreach (var child in node.Children)
         {
-            var result = Find(child, value);
+            var result = Find(child, match);
             if (result != null)
                 return result;
         }

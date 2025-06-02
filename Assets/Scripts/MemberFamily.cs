@@ -21,6 +21,5 @@ public class MemberFamily : MonoBehaviour
         Debug.Log("Member Name: " + NameMember);
     }
 
-
     
 }
